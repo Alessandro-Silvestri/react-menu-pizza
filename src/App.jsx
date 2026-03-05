@@ -56,40 +56,46 @@ function Header() {
 
 function Menu() {
   return (
-    <main className="menu">
+    <main className="menu">          }
       <h2>Our Menu</h2>
-      <Pizza
-        name="Pizza Spinaci"
-        ingredient="Tomato, mozarella, spinach, and ricotta cheese"
-        photoName="./pizzas/spinaci.jpg"
-        price={10}
-      />
-      <Pizza
-        name="Pizza Funghi"
-        ingredient="Tomato, mushrooms"
-        photoName="./pizzas/funghi.jpg"
-        price={12}
-      />
+      <ul className="pizzas">
+        {/* in react, using map, is mandatory using the internal property: "key" and indicate a property, in the object that is unique */}
+        {pizzaData.map((pizza) => {
+          return <Pizza pizzaObj={pizza} key={pizza.name} />;
+        })}
+      </ul>
     </main>
   );
 }
 
+// best practice: passing an object as a props and using the property I need
 function Pizza(props) {
   return (
-    <div className="pizza">
-      <img src={props.photoName} alt="Pizza spinaci" />
+    <li className="pizza">
+      <img src={props.pizzaObj.photoName} alt="Pizza spinaci" />
       <div>
-        <h3>{props.name}</h3>
-        <p>{props.ingredient}</p>
-        <span>{props.price}</span>
+        <h3>{props.pizzaObj.name}</h3>
+        <p>{props.pizzaObj.ingredient}</p>
+        <span>{props.pizzaObj.price}</span>
       </div>
-    </div>
+    </li>
   );
 }
 
 function Footer() {
   const hour = new Date().getHours();
-  return <h2 className="footer"> {hour} - We are currently open</h2>;
+  const openHour = 12;
+  const closeHour = 22;
+  const isOpen = hour < closeHour && hour >= openHour;
+  return (
+    <center>
+      {/* conditional rendering using the ternary operator */}
+      <h2 className="footer">
+        {hour} {isOpen ? "We are currently open" : "We are closed"}
+      </h2>
+      <button className="btn">Order</button>
+    </center>
+  );
 }
 //////////////////////////////////////////////////////////////////
 

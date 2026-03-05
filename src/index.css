@@ -153,6 +153,7 @@ body {
 
 .footer {
   font-size: 1.4rem;
+  margin-top: 50px;
 }
 
 .order {
@@ -172,6 +173,7 @@ body {
   padding: 1.4rem 3.2rem;
   cursor: pointer;
   transition: all 0.2s;
+  margin-top: 40px;
 }
 
 .btn:hover {
