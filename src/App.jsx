@@ -56,12 +56,12 @@ function Header() {
 
 function Menu() {
   return (
-    <main className="menu">          }
+    <main className="menu">          
       <h2>Our Menu</h2>
       <ul className="pizzas">
         {/* in react, using map, is mandatory using the internal property: "key" and indicate a property, in the object that is unique */}
         {pizzaData.map((pizza) => {
-          return <Pizza pizzaObj={pizza} key={pizza.name} />;
+          return !pizza.soldOut ? <Pizza pizzaObj={pizza} key={pizza.name} /> : null
         })}
       </ul>
     </main>
@@ -72,7 +72,7 @@ function Menu() {
 function Pizza(props) {
   return (
     <li className="pizza">
-      <img src={props.pizzaObj.photoName} alt="Pizza spinaci" />
+      <img src={props.pizzaObj.photoName} alt={props.pizzaObj.photoName} />
       <div>
         <h3>{props.pizzaObj.name}</h3>
         <p>{props.pizzaObj.ingredient}</p>
