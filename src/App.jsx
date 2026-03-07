@@ -56,12 +56,14 @@ function Header() {
 
 function Menu() {
   return (
-    <main className="menu">          
+    <main className="menu">
       <h2>Our Menu</h2>
       <ul className="pizzas">
         {/* in react, using map, is mandatory using the internal property: "key" and indicate a property, in the object that is unique */}
         {pizzaData.map((pizza) => {
-          return !pizza.soldOut ? <Pizza pizzaObj={pizza} key={pizza.name} /> : null
+          return !pizza.soldOut ? (
+            <Pizza pizzaObj={pizza} key={pizza.name} />
+          ) : null;
         })}
       </ul>
     </main>
@@ -88,13 +90,19 @@ function Footer() {
   const closeHour = 22;
   const isOpen = hour < closeHour && hour >= openHour;
   return (
-    <center>
-      {/* conditional rendering using the ternary operator */}
-      <h2 className="footer">
-        {hour} {isOpen ? "We are currently open" : "We are closed"}
-      </h2>
+    <footer className="footer">
+      {isOpen ? (
+        <div>
+          <p>We are open until {closeHour}:00. Come or visit us online</p>
+        </div>
+      ) : (
+        <p>
+          We are closed. You can find us open between: {openHour}:00 and{" "}
+          {closeHour}:00 pm
+        </p>
+      )}
       <button className="btn">Order</button>
-    </center>
+    </footer>
   );
 }
 //////////////////////////////////////////////////////////////////
@@ -104,7 +112,7 @@ function App() {
     <>
       <Header />
       <Menu />
-      <Footer />
+      <Footer className="footer" />
     </>
   );
 }

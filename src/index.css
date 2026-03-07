@@ -154,6 +154,8 @@ body {
 .footer {
   font-size: 1.4rem;
   margin-top: 50px;
+  text-align: center;
+  font-weight: bold;
 }
 
 .order {
